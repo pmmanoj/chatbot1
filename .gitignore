@@ -1,0 +1,5 @@
+# Feb 03-2018
+# Ref. URL: https://github.com/github/gitignore/blob/master/Node.gitignore
+#      NOTE: very good source for .gitignore for NODE. 
+
+node_modules/
