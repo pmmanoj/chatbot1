@@ -1,11 +1,18 @@
 // Jan 30th 2018
 
 // Source: /Users/sanjivsingh/chatBot/BotBuilder-Samples/Node/intelligence-LUIS
-// require ('dotenv-extended').load()
+// require ('dotenv-extended').load();
 
 var builder  = require('botbuilder');
 var restify  = require('restify'); 
 
+// ----- Quick Debug area ----- 
+console.log(' App ID %s',   process.env.MicrosoftAppId)
+console.log(' Password %s', process.env.MicrosoftAppPassword)
+// ------ End Debug area ------
+
+
+// Section 1: Setup BOT Server: REST endpoint, PORT listener, BOT process 
    
     // SETUP Restify Server (local machine) 
     var server = restify.createServer(); 
@@ -19,25 +26,23 @@ var restify  = require('restify');
         appPassword: process.env.MicrosoftAppPassword } );                                                 
 
 
+
+    // RECEIVE user message and respond by echoing each message back to the user w/prefix
+    var bot = new builder.UniversalBot( connector); 
+
     // LISTENING at REST endpoint
     server.post( '/api/messages', connector.listen() );
 
-    // RECEIVE user message and respond by echoing each message back to the user w/prefix
-    var bot = new builder.UniversalBot( connector, 
-                                        function(session) { session.send("SkillsAdvisor says ... : %s", 
-                                                                         session.message.text); 
-                                                          }); 
+
+// Section 2: Setup BOT dialog
+   
+    // Default dialog 
+    bot.dialog('/', function(session) { 
+              session.send("SkillAdvisor says ... : %s", session.message.text);
+    });
+
        
 // --- end part 1: URL: https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-quickstart 
-
-
-
-
-
-
-
-
-
 
 
 
