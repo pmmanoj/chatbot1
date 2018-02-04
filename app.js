@@ -24,7 +24,7 @@ var restify  = require('restify');
 
     // RECEIVE user message and respond by echoing each message back to the user w/prefix
     var bot = new builder.UniversalBot( connector, 
-                                        function(session) { session.send("You said: %s", 
+                                        function(session) { session.send("SkillsAdvisor says ... : %s", 
                                                                          session.message.text); 
                                                           }); 
        
