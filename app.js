@@ -1,14 +1,17 @@
 // Jan 30th 2018
 
 // Source: /Users/sanjivsingh/chatBot/BotBuilder-Samples/Node/intelligence-LUIS
-// require ('dotenv-extended').load();
+// URL: https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-quickstart
+//
+  
+require ('dotenv-extended').load();
 
 var builder  = require('botbuilder');
 var restify  = require('restify'); 
 
 // ----- Quick Debug area ----- 
-console.log(' App ID %s',   process.env.MicrosoftAppId)
-console.log(' Password %s', process.env.MicrosoftAppPassword)
+console.log(' App ID %s',   process.env.MicrosoftAppId )
+console.log(' Password %s', process.env.MicrosoftAppPassword )
 // ------ End Debug area ------
 
 
@@ -19,30 +22,40 @@ console.log(' Password %s', process.env.MicrosoftAppPassword)
         server.listen( process.env.port || process.env.PORT || 3978, 
                        function() { console.log('%s listening to %s', server.name, server.url); }); 
 
-
     // CONNECTOR to communicate with Bot Framework Service (remote endpoint)
     var connector = new builder.ChatConnector( {
         appId: process.env.MicrosoftAppId, 
         appPassword: process.env.MicrosoftAppPassword } );                                                 
-
-
-
-    // RECEIVE user message and respond by echoing each message back to the user w/prefix
-    var bot = new builder.UniversalBot( connector); 
+        // appId: null, 
+        // appPassword: null } );                                                 
 
     // LISTENING at REST endpoint
     server.post( '/api/messages', connector.listen() );
 
+    // RECEIVE user message and respond by echoing each message back to the user w/prefix
+       var bot = new builder.UniversalBot( connector); 
 
+  
 // Section 2: Setup BOT dialog
-   
-    // Default dialog 
-    bot.dialog('/', function(session) { 
-              session.send("SkillAdvisor says ... : %s", session.message.text);
-    });
+         
+    // DIALOG by default
+       bot.dialog('/', function(session) { 
+                       // yypsession.send("SkillAdvisor says ... : %s", session.message.text);
+                       session.send(" Your A.I Helper says ... : %s", session.message.text);
+       } );
 
        
 // --- end part 1: URL: https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-quickstart 
 
 
+// SCRATCH Area 
+       // RECEIVE user message and respond by echoing each message back to the user w/prefix
+       /* 
+       var bot = new builder.UniversalBot( connector,
+                                           function(session) { 
+                                           session.send("RAVANA SAYS ... : %s", session.message.text); 
+       } );
+       */
+
+// ojhjBMP698|veoMZKD59$=;
 
